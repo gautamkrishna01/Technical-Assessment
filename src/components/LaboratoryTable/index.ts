@@ -1,0 +1,1 @@
+export { LaboratoryTable } from "./LaboratoryTable";
