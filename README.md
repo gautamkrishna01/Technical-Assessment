@@ -1,5 +1,3 @@
-# Project Links
-
 # Project Demo
 
 You can check the live demo of the Laboratory Services Table [here](https://technical-assessment-xi.vercel.app/).
