@@ -1,3 +1,9 @@
+# Project Links
+
+# Project Demo
+
+You can check the live demo of the Laboratory Services Table [here](https://technical-assessment-xi.vercel.app/).
+
 # Laboratory Services Table
 
 A dynamic React table component displaying laboratory test services with their counts, built for a technical assessment.
