@@ -7,6 +7,8 @@ interface LaboratoryTableProps {
   apiData: ApiItem[];
 }
 
+type TableItem = { type: "section" | "test"; data: any };
+
 export const LaboratoryTable = memo(({ apiData }: LaboratoryTableProps) => {
   const countMap = usePriorityCount(apiData);
 
@@ -66,7 +68,7 @@ export const LaboratoryTable = memo(({ apiData }: LaboratoryTableProps) => {
   };
 
   // Calculate rowSpan for each test name cell
-  const getRowSpan = (column: typeof allItems, startIndex: number): number => {
+  const getRowSpan = (column: TableItem[], startIndex: number): number => {
     const item = column[startIndex];
     if (item?.type !== "test" || !item.data.name2 || !item.data.name) return 1;
     if (!isInMergeRange(item.data.priorityDe)) return 1;
@@ -90,7 +92,7 @@ export const LaboratoryTable = memo(({ apiData }: LaboratoryTableProps) => {
 
   // Check if this row should skip rendering the test name cell
   const shouldSkipNameCell = (
-    column: typeof allItems,
+    column: TableItem[],
     currentIndex: number
   ): boolean => {
     if (currentIndex === 0) return false;
