@@ -2,6 +2,7 @@ import { memo } from "react";
 import { laboratorySchema } from "../../constants/laboratorySchema";
 import { usePriorityCount } from "../../hooks/usePriorityCount";
 import type { ApiItem } from "../../types";
+import { shouldMergeRanges } from "../../constants/mergedPriorityRanges";
 
 interface LaboratoryTableProps {
   apiData: ApiItem[];
@@ -36,30 +37,6 @@ export const LaboratoryTable = memo(({ apiData }: LaboratoryTableProps) => {
       maxRows: Math.max(...columnData.map((col) => col.length)),
     };
   };
-
-  // Define which priorityDe ranges should have merged test name cells
-  const shouldMergeRanges = [
-    [17, 18],
-    [28, 30],
-    [31, 32],
-    [48, 49],
-    [52, 53],
-    [73, 74],
-    [75, 76],
-    [79, 82],
-    [84, 87],
-    [127, 132],
-    [141, 142],
-    [143, 144],
-    [145, 146],
-    [147, 148],
-    [149, 150],
-    [151, 152],
-    [153, 154],
-    [155, 156],
-    [201, 202],
-    [203, 204],
-  ];
 
   const isInMergeRange = (priorityDe: number): boolean => {
     return shouldMergeRanges.some(
