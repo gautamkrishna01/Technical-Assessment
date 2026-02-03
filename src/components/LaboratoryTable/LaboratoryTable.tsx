@@ -273,79 +273,8 @@ export const LaboratoryTable = memo(({ apiData }: LaboratoryTableProps) => {
       {/* Medium screens (768px - 1023px): 2 columns */}
       {renderTable(2, "hidden md:block lg:hidden w-full")}
 
-      {/* Small screens (640px - 767px): 1 column */}
-      {renderTable(1, "hidden sm:block md:hidden w-full")}
-
-      {/* Mobile View - Card-based layout for very small screens (<640px) */}
-      <div className="block sm:hidden w-full">
-        {laboratorySchema.map((section, sectionIndex) => (
-          <div key={sectionIndex} className="mb-4">
-            {/* Section Header */}
-            <div className="bg-[#D4A574] text-black font-extrabold text-sm py-2 px-3 border-2 border-black mb-2">
-              {section.title}
-            </div>
-
-            {/* Tests in this section */}
-            <div className="space-y-2">
-              {section.tests.map((test, testIndex) => {
-                const count = countMap.get(test.priorityDe) ?? "";
-                const hasSecondary = test.name2 !== undefined;
-
-                return (
-                  <div
-                    key={testIndex}
-                    className="border-2 border-black bg-white"
-                  >
-                    {/* Card content */}
-                    <div className="flex flex-col text-xs">
-                      {/* DE Number row */}
-                      <div className="flex border-b border-black">
-                        <div className="bg-[#E8B87D] font-semibold px-2 py-1.5 border-r border-black w-16">
-                          DE
-                        </div>
-                        <div className="bg-[#FFFACD] px-2 py-1.5 flex-1">
-                          {test.priorityDe}
-                        </div>
-                      </div>
-
-                      {/* Test name row */}
-                      <div className="flex border-b border-black">
-                        <div className="bg-[#E8B87D] font-semibold px-2 py-1.5 border-r border-black w-16">
-                          Test
-                        </div>
-                        <div className="bg-[#FFFACD] px-2 py-1.5 flex-1">
-                          {hasSecondary ? (
-                            <div className="flex flex-col">
-                              {test.name && (
-                                <div className="font-medium mb-1">
-                                  {test.name}
-                                </div>
-                              )}
-                              <div>{test.name2}</div>
-                            </div>
-                          ) : (
-                            test.name
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Count row */}
-                      <div className="flex">
-                        <div className="bg-[#E8B87D] font-semibold px-2 py-1.5 border-r border-black w-16">
-                          No.
-                        </div>
-                        <div className="bg-white px-2 py-1.5 flex-1">
-                          {count}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Mobile & Small screens (< 768px): 1 column table layout */}
+      {renderTable(1, "block md:hidden w-full")}
     </>
   );
 });
